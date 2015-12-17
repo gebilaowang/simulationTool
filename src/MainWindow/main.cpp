@@ -1,15 +1,18 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QDesktopWidget>
+#include "warningwidget.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-//    CentralWidget w;
-//    w.show();
     MainWindow w;
     w.show();
+
+//    WarningWidget w;
+//    IssueWidget w;
+//    w.show();
 
     QDesktopWidget *desktop=QApplication::desktop();
     w.resize(desktop->width()*3/4,desktop->height()*3/4);

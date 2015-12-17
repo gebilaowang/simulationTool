@@ -13,6 +13,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    controllistwidget.cpp \
+    warningwidget.cpp \
+    propertytreewidget.cpp \
+    centralwidget.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    controllistwidget.h \
+    warningwidget.h \
+    propertytreewidget.h \
+    centralwidget.h
