@@ -3,8 +3,8 @@
 #include <QTextEdit>
 #include <QTableWidget>
 
-WarningWidget::WarningWidget(QDockWidget *parent) :
-    QDockWidget(parent)
+WarningWidget::WarningWidget(QWidget *parent) :
+    QWidget(parent)
 {
     createUI();
 }

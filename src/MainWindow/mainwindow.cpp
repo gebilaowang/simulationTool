@@ -20,19 +20,13 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    setWindowTitle("SimulationTool");
     //    setStyleSheet("background-color:green");
     createUI();
     createParam();
     createConnects();
 
     //    createToolBar();
-
-    //    QAction *fileAction=new QAction("&File",this);
-    //    QAction *openAction=new QAction("&Open",this);
-
-    //    QMenuBar *fileMenu=menuBar();
-    //    fileMenu->addAction(fileAction);
-    //    fileMenu->addAction(openAction);
 
 }
 
@@ -59,13 +53,28 @@ void MainWindow::createUI()
     centralWidget=new CentralWidget;
     setCentralWidget(centralWidget);
 
+    leftDockWidget=new QDockWidget(this);
+    rightDockWidget=new QDockWidget;
+    bottomDockWidget =new QDockWidget;
+
     propertyTreeWidget=new PropertyTreeWidget;
     controlListWidget=new ControlListWidget;
     warningWidget=new WarningWidget;
 
-    addDockWidget(Qt::LeftDockWidgetArea,controlListWidget);
-    addDockWidget(Qt::RightDockWidgetArea,propertyTreeWidget);
-    addDockWidget(Qt::BottomDockWidgetArea,warningWidget);
+    leftDockWidget->setWidget(controlListWidget);
+    rightDockWidget->setWidget(propertyTreeWidget);
+    bottomDockWidget->setWidget(warningWidget);
+
+    leftDockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
+    rightDockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
+    bottomDockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
+
+    leftDockWidget->setWindowTitle("ControlList");
+
+    addDockWidget(Qt::LeftDockWidgetArea,leftDockWidget);
+    addDockWidget(Qt::RightDockWidgetArea,rightDockWidget);
+//    centralWidget->addDockWidget(Qt::BottomDockWidgetArea,bottomDockWidget);
+
 }
 
 void MainWindow::createMenuBar()

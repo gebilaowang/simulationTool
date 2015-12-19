@@ -1,6 +1,6 @@
 #include "propertytreewidget.h"
 
-PropertyTreeWidget::PropertyTreeWidget(QDockWidget *parent) :
-    QDockWidget(parent)
+PropertyTreeWidget::PropertyTreeWidget(QWidget *parent) :
+    QWidget(parent)
 {
 }

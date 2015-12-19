@@ -3,6 +3,10 @@
 
 #include <QWidget>
 
+class QGraphicsView;
+class QSplitter;
+class QGraphicsScene;
+
 class CentralWidget : public QWidget
 {
     Q_OBJECT
@@ -13,7 +17,16 @@ public:
 signals:
     
 public slots:
-    
+private:
+    void createUI();
+    void setSplitterSize();
+private:
+    QGraphicsView *view;
+    QGraphicsScene *scene;
+
+    QSplitter *splitter;
+    QWidget *warningWidget;
+
 };
 
 #endif // CENTRALWIDGET_H

@@ -7,11 +7,11 @@
 class IssueWidget;
 class QTextEdit;
 class QTabWidget;
-class WarningWidget : public QDockWidget
+class WarningWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit WarningWidget(QDockWidget *parent = 0);
+    explicit WarningWidget(QWidget *parent = 0);
     ~WarningWidget();
 private:
     void createUI();

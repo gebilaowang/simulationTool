@@ -4,11 +4,11 @@
 #include <QWidget>
 #include <QDockWidget>
 
-class PropertyTreeWidget : public QDockWidget
+class PropertyTreeWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PropertyTreeWidget(QDockWidget *parent = 0);
+    explicit PropertyTreeWidget(QWidget *parent = 0);
     
 signals:
     

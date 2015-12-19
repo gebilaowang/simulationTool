@@ -2,6 +2,8 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include "warningwidget.h"
+#include "centralwidget.h"
+#include "controllistwidget.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,8 +12,14 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+//    ControlListWidget w;
+//    w.show();
+
 //    WarningWidget w;
 //    IssueWidget w;
+//    w.show();
+
+//    CentralWidget w;
 //    w.show();
 
     QDesktopWidget *desktop=QApplication::desktop();
