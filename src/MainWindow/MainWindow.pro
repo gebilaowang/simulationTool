@@ -24,3 +24,17 @@ HEADERS  += mainwindow.h \
     warningwidget.h \
     propertytreewidget.h \
     centralwidget.h
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../BaseClass/release/ -lBaseClass
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../BaseClass/debug/ -lBaseClass
+else:unix: LIBS += -L$$OUT_PWD/../BaseClass/ -lBaseClass
+
+INCLUDEPATH += $$PWD/../BaseClass
+DEPENDPATH += $$PWD/../BaseClass
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../ControlFactory/release/ -lControlFactory
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../ControlFactory/debug/ -lControlFactory
+else:unix: LIBS += -L$$OUT_PWD/../ControlFactory/ -lControlFactory
+
+INCLUDEPATH += $$PWD/../ControlFactory
+DEPENDPATH += $$PWD/../ControlFactory

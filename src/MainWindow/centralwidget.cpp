@@ -1,4 +1,7 @@
 #include <QTextEdit>
+#include <QDebug>
+#include <QMimeData>
+#include <QDragEnterEvent>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QHBoxLayout>
@@ -9,6 +12,28 @@
 
 CentralWidget::CentralWidget(QWidget *parent) :
     QWidget(parent)
+{
+    setAcceptDrops(true);
+    createUI();
+}
+
+CentralWidget::~CentralWidget()
+{
+
+}
+
+void CentralWidget::dragEnterEvent(QDragEnterEvent *e)
+{
+     e->acceptProposedAction();
+}
+
+void CentralWidget::dropEvent(QDropEvent *e)
+{
+    QString dataStr=e->mimeData()->text();
+    qDebug()<<"void CentralWidget::dropEvent(QDropEvent *e)--"<<dataStr;
+}
+
+void CentralWidget::createUI()
 {
     scene=new QGraphicsScene(this);
     view =new QGraphicsView(this);
@@ -33,16 +58,6 @@ CentralWidget::CentralWidget(QWidget *parent) :
     setLayout(layout);
 
     setSplitterSize();
-}
-
-CentralWidget::~CentralWidget()
-{
-
-}
-
-void CentralWidget::createUI()
-{
-
 }
 
 void CentralWidget::setSplitterSize()

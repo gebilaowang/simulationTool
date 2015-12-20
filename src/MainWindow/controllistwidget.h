@@ -2,8 +2,9 @@
 #define CONTROLLISTWIDGET_H
 
 #include <QWidget>
-#include <QDockWidget>
+//#include <QModelIndex>
 
+class QModelIndex;
 class Widget;
 class QTreeView;
 class QTreeWidget;
@@ -12,13 +13,15 @@ class ControlListWidget : public QWidget
     Q_OBJECT
 public:
     explicit ControlListWidget(QWidget *parent = 0);
-    
-signals:
-    
-public slots:
-    
+    ~ControlListWidget();
 private:
-QTreeWidget *tree;
+    void createUI();
+    void createConnects();
+private slots:
+    //鼠标拖拽事件
+    void slotStartDarg();
+private:
+    QTreeWidget *tree;
 };
 
 

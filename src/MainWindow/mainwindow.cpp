@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     setWindowTitle("SimulationTool");
+//    setAcceptDrops(true);
     //    setStyleSheet("background-color:green");
     createUI();
     createParam();

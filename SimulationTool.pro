@@ -1,3 +1,5 @@
 TEMPLATE = subdirs
 SUBDIRS += \
-    src/MainWindow
+    src/MainWindow \
+    src/BaseClass \
+    src/ControlFactory

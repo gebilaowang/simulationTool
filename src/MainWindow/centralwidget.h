@@ -6,6 +6,8 @@
 class QGraphicsView;
 class QSplitter;
 class QGraphicsScene;
+class QDragEnterEvent;
+class QDropEvent;
 
 class CentralWidget : public QWidget
 {
@@ -13,10 +15,9 @@ class CentralWidget : public QWidget
 public:
     explicit CentralWidget(QWidget *parent = 0);
     ~CentralWidget();
-    
-signals:
-    
-public slots:
+
+    void dragEnterEvent(QDragEnterEvent *);
+    void dropEvent(QDropEvent *);
 private:
     void createUI();
     void setSplitterSize();
@@ -26,7 +27,6 @@ private:
 
     QSplitter *splitter;
     QWidget *warningWidget;
-
 };
 
 #endif // CENTRALWIDGET_H
