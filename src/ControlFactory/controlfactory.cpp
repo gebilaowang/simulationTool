@@ -11,7 +11,7 @@ ControlFactory::~ControlFactory()
 
 }
 
-BaseWidget *ControlFactory::getProduct(const QString nameStr)
+ControlBaseWidget *ControlFactory::getProduct(const QString nameStr)
 {
     if(nameStr.contains("Circle"))
     {
@@ -23,6 +23,11 @@ BaseWidget *ControlFactory::getProduct(const QString nameStr)
     }
     else
         return NULL;
+}
+
+QStringList ControlFactory::getControlNameList()
+{
+
 }
 
 void ControlFactory::initProductList()

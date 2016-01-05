@@ -1,8 +1,8 @@
 #include "circle.h"
 #include <QPainter>
 
-Circle::Circle(BaseWidget *parent):
-    BaseWidget(parent)
+Circle::Circle(ControlBaseWidget *parent):
+    ControlBaseWidget(parent)
 {
 }
 

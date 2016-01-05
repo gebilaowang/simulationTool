@@ -3,6 +3,8 @@
 # Project created by QtCreator 2015-12-20T09:39:17
 #
 #-------------------------------------------------
+include(../../SimulationTool.pri)
+#DESTDIR = $$ST_LIB_PATH
 
 TARGET = ControlFactory
 TEMPLATE = lib
@@ -27,9 +29,8 @@ unix:!symbian {
     INSTALLS += target
 }
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../BaseClass/release/ -lBaseClass
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../BaseClass/debug/ -lBaseClass
-else:unix: LIBS += -L$$OUT_PWD/../BaseClass/ -lBaseClass
+
+unix|win32: LIBS += -L$$OUT_PWD/../BaseClass/ -lBaseClass
 
 INCLUDEPATH += $$PWD/../BaseClass
 DEPENDPATH += $$PWD/../BaseClass

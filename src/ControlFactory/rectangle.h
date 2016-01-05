@@ -2,13 +2,13 @@
 #define RECTANGLE_H
 
 #include <QWidget>
-#include "basewidget.h"
+#include "controlbasewidget.h"
 
-class Rectangle : public BaseWidget
+class Rectangle : public ControlBaseWidget
 {
     Q_OBJECT
 public:
-    explicit Rectangle(BaseWidget *parent = 0);
+    explicit Rectangle(ControlBaseWidget *parent = 0);
     
 protected:
     void paintEvent(QPaintEvent *);

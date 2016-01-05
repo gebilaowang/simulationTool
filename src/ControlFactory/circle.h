@@ -2,13 +2,13 @@
 #define CIRCLE_H
 
 #include <QWidget>
-#include "basewidget.h"
+#include "controlbasewidget.h"
 
-class Circle : public BaseWidget
+class Circle : public ControlBaseWidget
 {
     Q_OBJECT
 public:
-    explicit Circle(BaseWidget *parent=0);
+    explicit Circle(ControlBaseWidget *parent=0);
     ~Circle();
     
 protected:

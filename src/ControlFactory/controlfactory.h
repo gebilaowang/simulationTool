@@ -3,17 +3,17 @@
 
 #include "controlfactory_global.h"
 #include "baseclass.h"
-#include "basewidget.h"
+#include "controlbasewidget.h"
+#include "factorybaseclass.h"
 
-
-class CONTROLFACTORYSHARED_EXPORT ControlFactory:public BaseClass
+class CONTROLFACTORYSHARED_EXPORT ControlFactory:public FactoryBaseClass
 {
 public:
     ControlFactory();
     ~ControlFactory();
 
-    BaseWidget *getProduct(const QString);
-
+    ControlBaseWidget *getProduct(const QString);
+    QStringList getControlNameList();
 private:
     void initProductList();
 private:

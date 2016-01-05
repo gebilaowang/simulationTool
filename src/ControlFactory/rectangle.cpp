@@ -1,8 +1,8 @@
 #include "rectangle.h"
 #include <QPainter>
 
-Rectangle::Rectangle(BaseWidget *parent) :
-    BaseWidget(parent)
+Rectangle::Rectangle(ControlBaseWidget *parent) :
+    ControlBaseWidget(parent)
 {
 }
 
