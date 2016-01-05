@@ -9,10 +9,14 @@ TEMPLATE = lib
 
 DEFINES += CONTROLFACTORY_LIBRARY
 
-SOURCES += controlfactory.cpp
+SOURCES += controlfactory.cpp \
+    circle.cpp \
+    rectangle.cpp
 
 HEADERS += controlfactory.h\
-        controlfactory_global.h
+        controlfactory_global.h \
+    circle.h \
+    rectangle.h
 
 unix:!symbian {
     maemo5 {

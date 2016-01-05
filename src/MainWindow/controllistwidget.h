@@ -2,6 +2,7 @@
 #define CONTROLLISTWIDGET_H
 
 #include <QWidget>
+#include "controlfactory.h"
 //#include <QModelIndex>
 
 class QModelIndex;

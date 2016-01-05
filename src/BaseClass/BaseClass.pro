@@ -9,10 +9,12 @@ TEMPLATE = lib
 
 DEFINES += BASECLASS_LIBRARY
 
-SOURCES += baseclass.cpp
+SOURCES += baseclass.cpp \
+    basewidget.cpp
 
 HEADERS += baseclass.h\
-        baseclass_global.h
+        baseclass_global.h \
+    basewidget.h
 
 unix:!symbian {
     maemo5 {

@@ -1,7 +1,7 @@
 #include "baseclass.h"
 
-
-BaseClass::BaseClass()
+BaseClass::BaseClass(QWidget *parent)
+    :QWidget(parent)
 {
 }
 
