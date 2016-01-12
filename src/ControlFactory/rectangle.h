@@ -9,9 +9,8 @@ class Rectangle : public ControlBaseWidget
     Q_OBJECT
 public:
     explicit Rectangle(ControlBaseWidget *parent = 0);
-    
-protected:
-    void paintEvent(QPaintEvent *);
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 signals:
     
 public slots:

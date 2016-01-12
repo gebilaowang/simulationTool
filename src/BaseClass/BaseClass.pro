@@ -13,12 +13,14 @@ DEFINES += BASECLASS_LIBRARY
 
 SOURCES += baseclass.cpp \
     factorybaseclass.cpp \
-    controlbasewidget.cpp
+    controlbasewidget.cpp \
+    controlgraphicsproxywidget.cpp
 
 HEADERS += baseclass.h\
         baseclass_global.h \
     factorybaseclass.h \
-    controlbasewidget.h
+    controlbasewidget.h \
+    controlgraphicsproxywidget.h
 
 unix:!symbian {
     maemo5 {

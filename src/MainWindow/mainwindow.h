@@ -41,6 +41,4 @@ private:
     WarningWidget *warningWidget;
 };
 
-
-
 #endif // MAINWINDOW_H

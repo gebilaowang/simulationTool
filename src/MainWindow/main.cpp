@@ -1,4 +1,6 @@
 #include "mainwindow.h"
+#include <QHBoxLayout>
+#include <QGraphicsView>
 #include <QDebug>
 #include <QApplication>
 #include <QDesktopWidget>
@@ -34,9 +36,21 @@ int main(int argc, char *argv[])
 #else
     ControlFactory f;
 
-    QWidget *w=f.getProduct("Circle");
-    w->show();
+    QGraphicsView* view =new QGraphicsView;
+    QGraphicsScene* scene=new QGraphicsScene;
+    view->setScene(scene);
+
+    ControlGraphicsProxyWidget *circle=f.getProduct("Circle");
+//    scene->addWidget(circle);
+    scene->addItem(circle);
+
+    QWidget *widget=new QWidget;
+    QHBoxLayout *layout=new QHBoxLayout;
+    layout->addWidget(view);
+    widget->resize(400,400);
+    widget ->setLayout(layout);
+    widget ->show();
 #endif
-    
+
     return a.exec();
 }

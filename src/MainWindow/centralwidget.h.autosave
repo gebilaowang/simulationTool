@@ -24,7 +24,7 @@ class CentralWidget : public QWidget
 public:
     explicit CentralWidget(QWidget *parent = 0);
     ~CentralWidget();
-
+    
 protected:
     void dragEnterEvent(QDragEnterEvent *);
     void dropEvent(QDropEvent *);
@@ -35,10 +35,10 @@ private:
 private:
     QGraphicsView *view;
     QGraphicsScene *scene;
-
-//    GraphicsView *view;
-//    GraphicsScene *scene;
-
+    
+    //    GraphicsView *view;
+    //    GraphicsScene *scene;
+    
     QSplitter *splitter;
     QWidget *warningWidget;
 };
@@ -49,11 +49,11 @@ class GraphicsScene:public QGraphicsScene
 public:
     GraphicsScene(QGraphicsScene*parent=0);
     ~GraphicsScene();
-
+    
 protected:
     void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
     void dropEvent(QGraphicsSceneDragDropEvent *event);
-
+    
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
@@ -68,7 +68,7 @@ class GraphicsView:public QGraphicsView
 public:
     GraphicsView();
     ~GraphicsView();
-
+    
 protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);

@@ -1,9 +1,9 @@
 TEMPLATE = subdirs
 SUBDIRS += \
-    src/MainWindow \
     src/BaseClass \
     src/ControlFactory\
-    src/OneControlFactroy
+    src/OneControlFactroy\
+    src/MainWindow
 
 include(SimulationTool.pri)
 

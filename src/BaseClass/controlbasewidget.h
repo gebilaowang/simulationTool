@@ -2,12 +2,13 @@
 #define CONTROLBASEWIDGET_H
 
 #include <QWidget>
+#include <QGraphicsProxyWidget>
 
-class ControlBaseWidget : public QWidget
+class ControlBaseWidget : public QGraphicsProxyWidget
 {
     Q_OBJECT
 public:
-    explicit ControlBaseWidget(QWidget *parent = 0);
+    explicit ControlBaseWidget(QGraphicsProxyWidget *parent = 0);
     
 signals:
     

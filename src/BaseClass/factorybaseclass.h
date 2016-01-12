@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "controlbasewidget.h"
+#include "controlgraphicsproxywidget.h"
 
 class FactoryBaseClass : public QObject
 {
@@ -12,7 +13,7 @@ public:
     ~FactoryBaseClass();
 
     virtual QStringList getControlNameList();
-    virtual ControlBaseWidget *getProduct(const QString);
+    virtual ControlGraphicsProxyWidget *getProduct(const QString);
 };
 
 #endif // FACTORYBASECLASS_H

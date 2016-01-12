@@ -1,6 +1,6 @@
 #include "controlbasewidget.h"
 
-ControlBaseWidget::ControlBaseWidget(QWidget *parent) :
-    QWidget(parent)
+ControlBaseWidget::ControlBaseWidget(QGraphicsProxyWidget *parent) :
+    QGraphicsProxyWidget(parent)
 {
 }

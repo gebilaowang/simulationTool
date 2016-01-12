@@ -21,14 +21,14 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     setWindowTitle("SimulationTool");
-//    setAcceptDrops(true);
+    //    setMouseTracking(true);
+    //    setAcceptDrops(true);
     //    setStyleSheet("background-color:green");
     createUI();
     createParam();
     createConnects();
 
     //    createToolBar();
-
 }
 
 MainWindow::~MainWindow()
@@ -74,7 +74,7 @@ void MainWindow::createUI()
 
     addDockWidget(Qt::LeftDockWidgetArea,leftDockWidget);
     addDockWidget(Qt::RightDockWidgetArea,rightDockWidget);
-//    centralWidget->addDockWidget(Qt::BottomDockWidgetArea,bottomDockWidget);
+    //    centralWidget->addDockWidget(Qt::BottomDockWidgetArea,bottomDockWidget);
 
 }
 

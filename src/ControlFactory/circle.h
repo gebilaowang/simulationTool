@@ -3,20 +3,27 @@
 
 #include <QWidget>
 #include "controlbasewidget.h"
+#include "controlgraphicsproxywidget.h"
 
-class Circle : public ControlBaseWidget
+class CircleWidget;
+class Circle : public ControlGraphicsProxyWidget
 {
     Q_OBJECT
 public:
-    explicit Circle(ControlBaseWidget *parent=0);
+    explicit Circle(ControlGraphicsProxyWidget *parent=0);
     ~Circle();
-    
+
+//    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+};
+
+class CircleWidget:public QWidget
+{
+    Q_OBJECT
+public:
+    CircleWidget();
+    ~CircleWidget();
 protected:
     void paintEvent(QPaintEvent *);
-signals:
-    
-public slots:
-    
 };
 
 #endif // CIRCLE_H
