@@ -22,9 +22,11 @@ void Circle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 }
 #endif
 
-CircleWidget::CircleWidget()
+CircleWidget::CircleWidget():
+    color(Qt::blue)
 {
-    resize(100,100);
+    resize(80,80);
+    setAttribute(Qt::WA_TranslucentBackground);
 }
 
 CircleWidget::~CircleWidget()
@@ -35,12 +37,10 @@ CircleWidget::~CircleWidget()
 void CircleWidget::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
-    //    QRect rect(0,0,100,100);
-    //   painter->setPen(QPen(Qt::green));
-    //    painter->drawRect(rect);
+    painter.setRenderHint(QPainter::Antialiasing);
 
-    painter.setPen(QPen(Qt::blue,4,Qt::SolidLine));
-    painter.drawEllipse(0,0,80,80);
+    painter.setPen(QPen(color,4,Qt::SolidLine));
+    painter.drawEllipse(2,2,width()-4,height()-4);
     painter.end();
 
     QWidget::paintEvent(e);

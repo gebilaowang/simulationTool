@@ -10,7 +10,6 @@ class Rectangle : public ControlBaseWidget
 public:
     explicit Rectangle(ControlBaseWidget *parent = 0);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 signals:
     
 public slots:

@@ -9,7 +9,7 @@ class BASECLASSSHARED_EXPORT BaseClass:public QWidget
         Q_OBJECT
 public:
     BaseClass(QWidget*parent=0);
-    ~BaseClass();
+    virtual ~BaseClass();
 };
 
 #endif // BASECLASS_H

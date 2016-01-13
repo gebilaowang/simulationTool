@@ -15,32 +15,8 @@ class GraphicsView;
 
 enum Operation
 {
-    MouseLeftPressed=0
-};
-
-class CentralWidget : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit CentralWidget(QWidget *parent = 0);
-    ~CentralWidget();
-
-protected:
-    void dragEnterEvent(QDragEnterEvent *);
-    void dropEvent(QDropEvent *);
-private:
-    void createUI();
-    void createConnect();
-    void setSplitterSize();
-private:
-    QGraphicsView *view;
-    QGraphicsScene *scene;
-
-//    GraphicsView *view;
-//    GraphicsScene *scene;
-
-    QSplitter *splitter;
-    QWidget *warningWidget;
+    Nothing=0,
+    MouseLeftPressed
 };
 
 class GraphicsScene:public QGraphicsScene
@@ -50,13 +26,6 @@ public:
     GraphicsScene(QGraphicsScene*parent=0);
     ~GraphicsScene();
 
-protected:
-    void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
-    void dropEvent(QGraphicsSceneDragDropEvent *event);
-
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 private:
     short oper;
     QGraphicsItem *currentItem;
@@ -71,7 +40,22 @@ public:
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event);
+    void dragMoveEvent(QDragMoveEvent *event);
     void dropEvent(QDropEvent *event);
+
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+private slots:
+    void slotSelectionChanged();
+private:
+    void createUI();
+    void createConnect();
+private:
+    int oper;
+    QGraphicsItem *currentItem;
+//    QGraphicsScene *scene;
+    GraphicsScene *scene;
 };
 
 #endif // CENTRALWIDGET_H

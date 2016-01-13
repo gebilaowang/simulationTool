@@ -7,10 +7,6 @@ Rectangle::Rectangle(ControlBaseWidget *parent) :
     resize(100,100);
 }
 
-void Rectangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-
-}
 
 #if 0
 void Rectangle::paintEvent(QPaintEvent *e)

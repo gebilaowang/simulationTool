@@ -13,83 +13,10 @@
 #include "rectangle.h"
 #include "controlfactory.h"
 
-CentralWidget::CentralWidget(QWidget *parent) :
-    QWidget(parent)
-{
-    setAcceptDrops(true);
-    setMouseTracking(true);
-    createUI();
-}
-
-CentralWidget::~CentralWidget()
-{
-
-}
-
-void CentralWidget::dragEnterEvent(QDragEnterEvent *e)
-{
-    e->acceptProposedAction();
-}
-
-void CentralWidget::dropEvent(QDropEvent *e)
-{
-    QString dataStr=e->mimeData()->text();
-    qDebug()<<"void CentralWidget::dropEvent(QDropEvent *e)--"<<dataStr;
-
-    ControlFactory *factory=new ControlFactory;
-    ControlGraphicsProxyWidget *control=factory->getProduct("Circle");
-    control->setToolTip("Circle");
-    control->setPos(view->mapToScene(e->pos()));
-
-    qDebug()<<e->pos()<<view->mapToScene(e->pos());
-
-    scene->addItem(control);
-}
-
-void CentralWidget::createUI()
-{
-    view =new GraphicsView;
-    view->setAcceptDrops(false);
-    view->setMouseTracking(true);
-    scene=new GraphicsScene;
-    scene->setSceneRect(QRectF(0, 0, 800,800));
-    view->setScene(scene);
-
-    warningWidget=new QWidget;
-    warningWidget->setStyleSheet("background-color:green");
-
-    splitter=new QSplitter(Qt::Vertical);
-    splitter->addWidget(view);
-    //    splitter->addWidget(warningWidget);
-
-    QVBoxLayout *layout=new QVBoxLayout;
-    layout->setMargin(0);
-    layout->addWidget(splitter);
-    //    layout->addWidget(view);
-
-    setLayout(layout);
-
-    setSplitterSize();
-}
-
-void CentralWidget::createConnect()
-{
-}
-
-void CentralWidget::setSplitterSize()
-{
-    QList<int> sizeList;
-    sizeList.append(height()*4/5);
-    sizeList.append(height()/5);
-
-    splitter->setSizes(sizeList);
-}
-
-
 GraphicsScene::GraphicsScene(QGraphicsScene *parent)
     :QGraphicsScene(parent),
       currentItem(NULL),
-      oper(-1)
+      oper(Nothing)
 {
 
 }
@@ -99,72 +26,13 @@ GraphicsScene::~GraphicsScene()
 
 }
 
-void GraphicsScene::dragEnterEvent(QGraphicsSceneDragDropEvent *event)
-{
-    qDebug()<<"graphicsScene dragEnterEvent--";
-    event->setAccepted(true);
-}
-
-void GraphicsScene::dropEvent(QGraphicsSceneDragDropEvent *event)
-{
-    QString dataStr=event->mimeData()->text();
-    qDebug()<<"void CentralWidget::dropEvent(QDropEvent *e)--"<<dataStr;
-
-    ControlFactory *factory=new ControlFactory;
-    ControlGraphicsProxyWidget *control=factory->getProduct("Circle");
-    control->setToolTip("Circle");
-    control->setPos(event->scenePos());
-    addItem(control);
-}
-
-void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-    qDebug()<<"GraphicsScene mousePressEvnet button--"
-           <<event->type()
-          <<event->button();
-
-    if(event->button()!=Qt::LeftButton)
-        return;
-#if 0
-    oper=MouseLeftPressed;
-
-    currentItem=itemAt(event->scenePos());
-    if(currentItem==NULL)
-    {
-        return;
-    }
-    qDebug()<<"Scene mousepressEvnet--"<<currentItem->toolTip();
-#endif
-    QGraphicsScene::mousePressEvent(event);
-}
-
-void GraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
-{
-    if(oper!=MouseLeftPressed)
-        return;
-
-    qDebug()<<"mouseMoveEvnet--"<<event->scenePos();
-
-    if(currentItem==NULL)
-        return;
-
-    currentItem->setPos(event->pos());;vb
-
-    QGraphicsScene::mouseMoveEvent(event);
-}
-
-void GraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    //    qDebug()<<"GraphicsScene mouseReleaseEvent--";
-    oper=-1;
-
-    QGraphicsScene::mouseReleaseEvent(event);
-}
-
-
 GraphicsView::GraphicsView()
+    :oper(Nothing),currentItem(NULL)
 {
-
+    createUI();
+    //    createConnect();
+    connect(scene,SIGNAL(selectionChanged()),
+            this,SLOT(slotSelectionChanged()));
 }
 
 GraphicsView::~GraphicsView()
@@ -174,10 +42,121 @@ GraphicsView::~GraphicsView()
 
 void GraphicsView::dragEnterEvent(QDragEnterEvent *event)
 {
-    event->accept();
+    event->acceptProposedAction();
+}
+
+void GraphicsView::dragMoveEvent(QDragMoveEvent *event)
+{
+    event->acceptProposedAction();
 }
 
 void GraphicsView::dropEvent(QDropEvent *event)
 {
+    QString dataStr=event->mimeData()->text();
+    qDebug()<<"void CentralWidget::dropEvent(QDropEvent *e)--"<<dataStr;
 
+    ControlFactory *factory=new ControlFactory;
+    ControlGraphicsProxyWidget *control=factory->getProduct("Circle");
+    if(control==NULL)
+    {
+        qDebug()<<"void GraphicsView::dropEvent(QDropEvent *event)--"
+               <<"control is NULL--";
+        return;
+    }
+    control->setToolTip("Circle");
+    control->setPos(mapToScene(event->pos()));
+
+    //    qDebug()<<event->pos()<<mapToScene(event->pos());
+    scene->addItem(control);
+}
+
+void GraphicsView::mousePressEvent(QMouseEvent *event)
+{
+    if(event->button()==Qt::LeftButton)
+    {
+        currentItem=scene->itemAt(mapToScene(event->pos()));
+        if(currentItem)
+        {
+            setDragMode(QGraphicsView::NoDrag);
+
+            currentItem->setFlag(QGraphicsItem::ItemIsSelectable);
+            currentItem->setSelected(true);
+
+            slotSelectionChanged();
+
+            qDebug()<<"currentItem"<<currentItem->toolTip()<<currentItem->isSelected();
+
+        }
+        else
+            setDragMode(QGraphicsView::RubberBandDrag);
+
+        oper=MouseLeftPressed;
+        event->accept();
+    }
+    else
+        QGraphicsView::mousePressEvent(event);
+}
+
+void GraphicsView::mouseMoveEvent(QMouseEvent *event)
+{
+#if 1
+    if(oper==MouseLeftPressed)
+    {
+        if(currentItem!=NULL)
+        {
+            //        qDebug()<<currentItem->pos()<<event->pos();
+            currentItem->setPos(mapToScene(event->pos()));
+        }
+        //        return;
+    }
+    event->accept();
+#endif
+    QGraphicsView::mouseMoveEvent(event);
+}
+
+void GraphicsView::mouseReleaseEvent(QMouseEvent *event)
+{
+    oper=Nothing;
+    QGraphicsView::mouseReleaseEvent(event);
+}
+
+void GraphicsView::slotSelectionChanged()
+{
+    qDebug()<<"void GraphicsView::slotSelectionChanged()--"
+           <<    scene->selectedItems().size();
+
+    if(scene->selectedItems().size()==1)
+    {
+        QGraphicsItem *item=scene->selectedItems().first();
+        if(item==NULL)
+            return;
+
+        QGraphicsProxyWidget *proxyWidget=static_cast<QGraphicsProxyWidget*>(item);
+        if(proxyWidget==NULL)
+            return;
+        QWidget *controlWidget=proxyWidget->widget();
+        if(controlWidget==NULL)
+            return;
+
+        qDebug()<<"widget"<<controlWidget->metaObject()->className();
+
+    }
+}
+
+void GraphicsView::createUI()
+{
+    //    setDragMode(QGraphicsView::RubberBandDrag);
+    resize(800,800);
+    setAcceptDrops(true);
+    //        setStyleSheet("background-color:green");
+    scene=new GraphicsScene;
+    scene->setBackgroundBrush(QBrush(Qt::lightGray));
+    scene->setSceneRect(QRectF(0,0,width(),height()));
+    setScene(scene);
+}
+
+void GraphicsView::createConnect()
+{
+    connect(scene,SIGNAL(selectionChanged()),
+            this,SLOT(slotSelectionChanged()));
 }

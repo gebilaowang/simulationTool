@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setWindowTitle("SimulationTool");
     //    setMouseTracking(true);
-    //    setAcceptDrops(true);
+//        setAcceptDrops(true);
     //    setStyleSheet("background-color:green");
     createUI();
     createParam();
@@ -51,8 +51,9 @@ void MainWindow::createUI()
     createMenuBar();
     createStatusBar();
 
-    centralWidget=new CentralWidget;
-    setCentralWidget(centralWidget);
+//    setCentralWidget(centralWidget);
+    view=new GraphicsView;
+    setCentralWidget(view);
 
     leftDockWidget=new QDockWidget(this);
     rightDockWidget=new QDockWidget;

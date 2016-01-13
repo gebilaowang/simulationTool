@@ -8,8 +8,9 @@
 #include "centralwidget.h"
 #include "controllistwidget.h"
 #include "controlfactory.h"
+#include "propertytreewidget.h"
 
-#define MAINWINDOW_ENBALE 1
+#define MAINWINDOW_ENBALE 0
 
 int main(int argc, char *argv[])
 {
@@ -34,23 +35,15 @@ int main(int argc, char *argv[])
     w.move((desktop->width()-w.width())/2,
            (desktop->height()-w.height())/2);
 #else
-    ControlFactory f;
+    PropertyTestWidget *w=new PropertyTestWidget;
+    w->show();
 
-    QGraphicsView* view =new QGraphicsView;
-    QGraphicsScene* scene=new QGraphicsScene;
-    view->setScene(scene);
-
-    ControlGraphicsProxyWidget *circle=f.getProduct("Circle");
-//    scene->addWidget(circle);
-    scene->addItem(circle);
-
-    QWidget *widget=new QWidget;
-    QHBoxLayout *layout=new QHBoxLayout;
-    layout->addWidget(view);
-    widget->resize(400,400);
-    widget ->setLayout(layout);
-    widget ->show();
+    QDesktopWidget *desktop=QApplication::desktop();
+    w->resize(desktop->width()*3/4,desktop->height()*3/4);
+    w->move((desktop->width()-w->width())/2,
+           (desktop->height()-w->height())/2);
 #endif
+
 
     return a.exec();
 }

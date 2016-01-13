@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "centralwidget.h"
 
 class CentralWidget;
 class QLabel;
@@ -10,6 +11,7 @@ class ControlListWidget;
 class WarningWidget;
 class CentralWidget;
 class QAction;
+class GraphicsView;
 
 class MainWindow : public QMainWindow
 {
@@ -36,6 +38,7 @@ private:
     QLabel *statusLabel,*statusTimeLabel;
 
     CentralWidget *centralWidget;
+    GraphicsView *view;
     PropertyTreeWidget *propertyTreeWidget;
     ControlListWidget *controlListWidget;
     WarningWidget *warningWidget;

@@ -13,17 +13,23 @@ public:
     explicit Circle(ControlGraphicsProxyWidget *parent=0);
     ~Circle();
 
-//    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    //    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 
 class CircleWidget:public QWidget
 {
     Q_OBJECT
+    Q_PROPERTY(QColor Color READ  getColor WRITE setColor)
 public:
     CircleWidget();
     ~CircleWidget();
+
+    const QColor getColor(){return color;}
+    void setColor(const QColor& c){color=c;}
 protected:
     void paintEvent(QPaintEvent *);
+private:
+    QColor color;
 };
 
 #endif // CIRCLE_H

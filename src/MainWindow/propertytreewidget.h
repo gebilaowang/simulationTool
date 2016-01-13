@@ -2,7 +2,9 @@
 #define PROPERTYTREEWIDGET_H
 
 #include <QWidget>
-#include <QDockWidget>
+
+
+class QTreeWidget;
 
 class PropertyTreeWidget : public QWidget
 {
@@ -10,10 +12,24 @@ class PropertyTreeWidget : public QWidget
 public:
     explicit PropertyTreeWidget(QWidget *parent = 0);
     
-signals:
-    
 public slots:
-    
+    void slotGetControlWidget(QWidget*);
+private:
+    void createUI();
+private:
+    QTreeWidget *treeWidget;
+};
+
+
+
+class PropertyTestWidget:public QWidget
+{
+    Q_OBJECT
+public:
+    explicit PropertyTestWidget();
+
+private:
+    void createUI();
 };
 
 #endif // PROPERTYTREEWIDGET_H
