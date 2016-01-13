@@ -13,7 +13,7 @@ public:
     ~FactoryBaseClass();
 
     virtual QStringList getControlNameList();
-    virtual ControlGraphicsProxyWidget *getProduct(const QString);
+    virtual ControlBaseWidget *getProduct(const QString);
 };
 
 #endif // FACTORYBASECLASS_H

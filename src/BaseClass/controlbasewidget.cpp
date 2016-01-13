@@ -3,8 +3,8 @@
 ControlBaseWidget::ControlBaseWidget(QWidget *parent) :
     QWidget(parent)
 {
-    insertProInfo("Width","int","宽度");
-    insertProInfo("Height","int","宽度");
+    appendProVariantMap("Width","int","宽度");
+    appendProVariantMap("Height","int","高度");
 }
 
 ControlBaseWidget::~ControlBaseWidget()
@@ -12,12 +12,17 @@ ControlBaseWidget::~ControlBaseWidget()
 
 }
 
-void ControlBaseWidget::insertProInfo(const QString &name, const QString &type, const QString &chName)
+QMap<QString, PropertyInfo> ControlBaseWidget::getProVariantMap()
+{
+    return proVariantMap;
+}
+
+void ControlBaseWidget::appendProVariantMap(const QString &name, const QString &type, const QString &chName)
 {
     PropertyInfo info;
     info.name=name;
     info.type=type;
     info.chName=chName;
 
-    proInfoList.append(info);
+    proVariantMap.insert(info.name,info);
 }

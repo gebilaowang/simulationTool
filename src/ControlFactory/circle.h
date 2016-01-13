@@ -12,11 +12,9 @@ class Circle : public ControlGraphicsProxyWidget
 public:
     explicit Circle(ControlGraphicsProxyWidget *parent=0);
     ~Circle();
-
-    //    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 
-class CircleWidget:public QWidget
+class CircleWidget:public ControlBaseWidget
 {
     Q_OBJECT
     Q_PROPERTY(QColor Color READ  getColor WRITE setColor)

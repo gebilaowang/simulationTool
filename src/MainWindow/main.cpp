@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <QTextCodec>
 #include <QHBoxLayout>
 #include <QGraphicsView>
 #include <QDebug>
@@ -15,6 +16,14 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    QTextCodec *codec=QTextCodec::codecForName("utf-8");
+    if(codec)
+    {
+        QTextCodec::setCodecForCStrings(codec);
+        QTextCodec::setCodecForLocale(codec);
+        QTextCodec::setCodecForTr(codec);
+    }
 
 #if MAINWINDOW_ENBALE
     MainWindow w;

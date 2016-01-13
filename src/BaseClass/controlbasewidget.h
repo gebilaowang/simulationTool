@@ -12,6 +12,8 @@ class ControlBaseWidget : public QWidget
 public:
     explicit ControlBaseWidget(QWidget *parent = 0);
     virtual ~ControlBaseWidget();
+
+    QMap<QString,PropertyInfo> getProVariantMap();
     
     void setWidth(const int w){setWidth(w);}
     int getWidth(){return width();}
@@ -19,9 +21,9 @@ public:
     void setHeight(const int h){setHeight(h);}
     int getHeight(){return height();}
 protected:
-    void insertProInfo(const QString&name,const QString&type,const QString&chName);
+    void appendProVariantMap(const QString&name,const QString&type,const QString&chName);
 private:
-    QList<PropertyInfo> proInfoList;
+    QMap<QString,PropertyInfo> proVariantMap;
 };
 
 #endif // CONTROLBASEWIDGET_H

@@ -15,7 +15,7 @@ QStringList FactoryBaseClass::getControlNameList()
 
 }
 
-ControlGraphicsProxyWidget *FactoryBaseClass::getProduct(const QString)
+ControlBaseWidget* FactoryBaseClass::getProduct(const QString)
 {
 
 }

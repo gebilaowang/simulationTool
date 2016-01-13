@@ -56,7 +56,9 @@ void GraphicsView::dropEvent(QDropEvent *event)
     qDebug()<<"void CentralWidget::dropEvent(QDropEvent *e)--"<<dataStr;
 
     ControlFactory *factory=new ControlFactory;
-    ControlGraphicsProxyWidget *control=factory->getProduct("Circle");
+    ControlBaseWidget *circle=factory->getProduct("Circle");
+    ControlGraphicsProxyWidget *control=new ControlGraphicsProxyWidget;
+    control->setWidget(circle);
     if(control==NULL)
     {
         qDebug()<<"void GraphicsView::dropEvent(QDropEvent *event)--"

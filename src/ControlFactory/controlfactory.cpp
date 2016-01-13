@@ -12,11 +12,11 @@ ControlFactory::~ControlFactory()
 
 }
 
-ControlGraphicsProxyWidget *ControlFactory::getProduct(const QString nameStr)
+ ControlBaseWidget* ControlFactory::getProduct(const QString nameStr)
 {
     if(nameStr.contains("Circle"))
     {
-        return new Circle;
+        return new CircleWidget;
     }
 //    else if(nameStr.contains("Rectangle"))
 //    {

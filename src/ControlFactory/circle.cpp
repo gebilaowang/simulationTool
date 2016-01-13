@@ -27,6 +27,9 @@ CircleWidget::CircleWidget():
 {
     resize(80,80);
     setAttribute(Qt::WA_TranslucentBackground);
+
+//    appendProInfo("Height","int","宽度");
+    appendProVariantMap("Color","QColor","颜色");
 }
 
 CircleWidget::~CircleWidget()

@@ -6,6 +6,7 @@
 #include "controlbasewidget.h"
 #include "factorybaseclass.h"
 #include "controlgraphicsproxywidget.h"
+#include "controlbasewidget.h"
 
 class CONTROLFACTORYSHARED_EXPORT ControlFactory:public FactoryBaseClass
 {
@@ -13,7 +14,7 @@ public:
     ControlFactory();
     ~ControlFactory();
 
-    ControlGraphicsProxyWidget *getProduct(const QString);
+    ControlBaseWidget *getProduct(const QString);
     QStringList getControlNameList();
 private:
     void initProductList();
