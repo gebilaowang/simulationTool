@@ -5,15 +5,6 @@
 #include "controlbasewidget.h"
 #include "controlgraphicsproxywidget.h"
 
-class CircleWidget;
-class Circle : public ControlGraphicsProxyWidget
-{
-    Q_OBJECT
-public:
-    explicit Circle(ControlGraphicsProxyWidget *parent=0);
-    ~Circle();
-};
-
 class CircleWidget:public ControlBaseWidget
 {
     Q_OBJECT

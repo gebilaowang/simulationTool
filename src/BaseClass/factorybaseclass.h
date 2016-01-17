@@ -5,11 +5,9 @@
 #include "controlbasewidget.h"
 #include "controlgraphicsproxywidget.h"
 
-class FactoryBaseClass : public QObject
+class FactoryBaseClass
 {
-    Q_OBJECT
 public:
-    explicit FactoryBaseClass(QObject *parent = 0);
     ~FactoryBaseClass();
 
     virtual QStringList getControlNameList();
